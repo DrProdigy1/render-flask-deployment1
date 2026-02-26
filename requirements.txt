@@ -1,3 +1,3 @@
 Flask==2.3.2
-gunicorn==20.1.0
-setuptools>=65.5.0
+gunicorn>=23.0.0  # newer versions avoid pkg_resources in some cases
+setuptools<82.0
