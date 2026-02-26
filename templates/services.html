@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="py-20 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Header -->
+        <div class="text-center mb-16 md:mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
+                Our Core Commodities
+            </h1>
+            <p class="mt-5 text-xl md:text-2xl text-gray-600">
+                Reliable supply of essential recyclable and semi-finished materials
+            </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
+            {% for service in services %}
+            <div class="group bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                 onclick="toggleCard(this)">
+
+                <!-- Your photo -->
+                <img 
+                    src="{{ url_for('static', filename='images/' + service.image) }}" 
+                    alt="{{ service.title }}" 
+                    class="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-700">
+
+                <div class="p-8 md:p-10">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
+                        {{ service.title }}
+                    </h3>
+
+                    <!-- Teaser (shown by default) -->
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed teaser">
+                        {{ service.desc | truncate(140) }}…
+                        <span class="text-blue-600 font-semibold ml-1">Read more ↓</span>
+                    </p>
+
+                    <!-- Full description (hidden until clicked) -->
+                    <div class="details hidden mt-6 text-gray-700 text-lg leading-relaxed">
+                        <p>{{ service.desc }}</p>
+                        <p class="mt-8 font-medium text-blue-600">
+                            Ready to discuss supply? 
+                            <a href="/contact" class="underline hover:text-blue-800">
+                                Contact us for quotes and specifications
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Bottom note -->
+        <div class="text-center mt-20 text-gray-500 text-base">
+            <p>All commodities sourced responsibly with full traceability.<br>
+            Custom volumes, grades and delivery terms available on request.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Simple & reliable toggle script -->
+<script>
+    function toggleCard(card) {
+        const details = card.querySelector('.details');
+        const teaser  = card.querySelector('.teaser');
+        details.classList.toggle('hidden');
+        teaser.classList.toggle('hidden');
+    }
+</script>
+{% endblock %}
