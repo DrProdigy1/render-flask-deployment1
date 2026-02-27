@@ -6,7 +6,7 @@ app = Flask(__name__)
 services = [
     {
         "title": "Non-Ferrous",
-        "desc": "High-quality non-ferrous recyclable including aluminium, copper, zinc, nickel, lead, tin and alloys. Corrosion-resistant and conductive materials essential for electronics, automotive, aerospace, renewable energy and more. We supply consistent grades with full traceability.",
+        "desc": "High-quality non-ferrous recyclables including aluminium, copper, zinc, nickel, lead, tin and alloys. Corrosion-resistant and conductive materials essential for electronics, automotive, aerospace, renewable energy and more. We supply consistent grades with full traceability.",
         "image": "non-ferrous.jpg"
     },
     {
