@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Strong light mode forcing -->
     <meta name="color-scheme" content="light only">
     <meta name="theme-color" content="#ffffff">
     <title>Metalmen • Responsible Metal Sourcing</title>
     <style>
-        :root { color-scheme: light !important; }
+        :root {
+            color-scheme: light !important;
+        }
         html, body {
             color-scheme: light !important;
             background: #ffffff !important;
             color: #111111 !important;
         }
         
+        /* Force light mode even if user has dark mode enabled */
         @media (prefers-color-scheme: dark) {
             html, body, nav, footer, .hero, .category-section, .gallery-hero, .intro {
                 color-scheme: light !important;
@@ -90,7 +94,6 @@
         }
         .dropdown-content a:hover { background: #f8f9fa; color: #0066cc; }
 
-        /* Hamburger Menu - NOW BLUE on mobile */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -100,8 +103,7 @@
         .hamburger span {
             width: 25px;
             height: 3px;
-            background: #0066cc;   /* Blue colour */
-            transition: 0.3s;
+            background: #111;
         }
 
         footer {
@@ -226,7 +228,7 @@
     {% block content %}{% endblock %}
 
     <footer>
-        <p>&copy; 2026 Metalmen. All rights reserved.</p>
+        <p>&copy; 2026 Metalmen. All rights reserved. | Traceable • Sustainable • Global</p>
     </footer>
 
     <script>
