@@ -60,12 +60,9 @@
     }
     .btn:hover { background: #0052a3; transform: translateY(-4px); }
 
-    /* Mobile Optimizations */
     @media (max-width: 768px) {
         .hero-content h1 { font-size: 2.8rem; }
         .hero-content p { font-size: 1.35rem; }
-        .hero { min-height: 580px; }
-        .btn { padding: 14px 32px; font-size: 1.1rem; }
     }
 </style>
 
@@ -84,10 +81,86 @@
     </div>
 </section>
 
-<!-- Rest of your home page content (gallery + category cards) remains here... -->
+<!-- Animated Statistics -->
+<section style="padding:90px 5%;background:#fff;">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:50px;">
+            <div>
+                <h3 id="stat1" class="stat" style="font-size:3.8rem;font-weight:700;color:#0066cc;">0</h3>
+                <p style="font-size:1.25rem;color:#555;">Projects Delivered</p>
+            </div>
+            <div>
+                <h3 id="stat2" class="stat" style="font-size:3.8rem;font-weight:700;color:#0066cc;">0</h3>
+                <p style="font-size:1.25rem;color:#555;">Countries Served</p>
+            </div>
+            <div>
+                <h3 id="stat3" class="stat" style="font-size:3.8rem;font-weight:700;color:#0066cc;">0</h3>
+                <p style="font-size:1.25rem;color:#555;">Years Experience</p>
+            </div>
+            <div>
+                <h3 id="stat4" class="stat" style="font-size:3.8rem;font-weight:700;color:#0066cc;">0</h3>
+                <p style="font-size:1.25rem;color:#555;">Client Retention</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tesla-style Big Clickable Product Showcase -->
+<section style="padding:100px 5%;background:#f9f9f9;">
+    <div style="max-width:1300px;margin:0 auto;">
+        <h2 style="text-align:center;font-size:2.8rem;margin-bottom:60px;color:#0066cc;">Our Main Commodities</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;">
+            <a href="/services#ferrous" style="text-decoration:none;color:inherit;">
+                <div style="background:white;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12);transition:all .4s;">
+                    <img src="{{ url_for('static', filename='images/ferrous.jpg') }}" style="width:100%;height:280px;object-fit:cover;">
+                    <div style="padding:35px 30px;">
+                        <h3 style="font-size:2.1rem;margin-bottom:12px;color:#0066cc;">Ferrous</h3>
+                        <p style="color:#555;">Shredded steel, HMS, bushling, PNS, cast iron & rail scrap.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/services#nonferrous" style="text-decoration:none;color:inherit;">
+                <div style="background:white;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12);transition:all .4s;">
+                    <img src="{{ url_for('static', filename='images/non-ferrous.jpg') }}" style="width:100%;height:280px;object-fit:cover;">
+                    <div style="padding:35px 30px;">
+                        <h3 style="font-size:2.1rem;margin-bottom:12px;color:#0066cc;">Non-Ferrous</h3>
+                        <p style="color:#555;">Zurik, cables, UBC, Tense, TT, Telic, wheels, zinc products & more.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/services#semifinished" style="text-decoration:none;color:inherit;">
+                <div style="background:white;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12);transition:all .4s;">
+                    <img src="{{ url_for('static', filename='images/semi-finished.jpg') }}" style="width:100%;height:280px;object-fit:cover;">
+                    <div style="padding:35px 30px;">
+                        <h3 style="font-size:2.1rem;margin-bottom:12px;color:#0066cc;">Semi-Finished</h3>
+                        <p style="color:#555;">Billets, slabs, HR coils, CR sheets & wire rods.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/services#wastepaper" style="text-decoration:none;color:inherit;">
+                <div style="background:white;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12);transition:all .4s;">
+                    <img src="https://freerangestock.com/sample/144812/trash-can--discarded-paper.jpg" style="width:100%;height:280px;object-fit:cover;">
+                    <div style="padding:35px 30px;">
+                        <h3 style="font-size:2.1rem;margin-bottom:12px;color:#0066cc;">Waste Paper</h3>
+                        <p style="color:#555;">OCC, SOP, newsprint, magazines & mixed grades.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/services#plastics" style="text-decoration:none;color:inherit;">
+                <div style="background:white;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12);transition:all .4s;">
+                    <img src="https://assets.mixkit.co/videos/45279/45279-thumb-720-0.jpg" style="width:100%;height:280px;object-fit:cover;">
+                    <div style="padding:35px 30px;">
+                        <h3 style="font-size:2.1rem;margin-bottom:12px;color:#0066cc;">Plastics</h3>
+                        <p style="color:#555;">PET, HDPE, PP, LDPE & PVC recycling grades.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
 <script>
-    // Rotating Hero (fixed)
+    // Rotating Hero
     document.addEventListener('DOMContentLoaded', () => {
         const slides = document.querySelectorAll('.hero-slide');
         let current = 0;
@@ -98,15 +171,39 @@
             slides[current].classList.add('active');
         }
 
-        // Set background images
         slides.forEach(slide => {
-            if (slide.dataset.image) {
-                slide.style.backgroundImage = `url('${slide.dataset.image}')`;
-            }
+            if (slide.dataset.image) slide.style.backgroundImage = `url('${slide.dataset.image}')`;
         });
 
         setInterval(nextSlide, 5000);
     });
+
+    // Animated Statistics Counters
+    function animateValue(id, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            document.getElementById(id).textContent = value + (id === 'stat4' ? '%' : '+');
+            if (progress < 1) window.requestAnimationFrame(step);
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateValue("stat1", 0, 100, 1800);
+                animateValue("stat2", 0, 10, 1800);
+                animateValue("stat3", 0, 20, 1800);
+                animateValue("stat4", 0, 90, 1800);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector('#stat1').parentElement.parentElement);
 </script>
 
 {% endblock %}
