@@ -3,33 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Strong light mode forcing -->
-    <meta name="color-scheme" content="light only">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
     <title>Metalmen • Responsible Metal Sourcing</title>
     <style>
-        :root {
-            color-scheme: light !important;
-        }
-        html, body {
-            color-scheme: light !important;
-            background: #ffffff !important;
-            color: #111111 !important;
-        }
-        
-        /* Force light mode even if user has dark mode enabled */
-        @media (prefers-color-scheme: dark) {
-            html, body, nav, footer, .hero, .category-section, .gallery-hero, .intro {
-                color-scheme: light !important;
-                background: #ffffff !important;
-                color: #111111 !important;
-            }
-            nav, footer {
-                background: #ffffff !important;
-                color: #111111 !important;
-            }
-        }
-
+        :root { color-scheme: light; }
+        html { color-scheme: light; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: system-ui, -apple-system, sans-serif; 
@@ -55,11 +33,11 @@
         
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 32px;              /* Reduced gap so everything fits on one line */
             font-weight: 500;
             font-size: 1.02rem;
-            align-items: center;
-            flex-wrap: nowrap;
+            align-items: center;    /* Perfect vertical alignment */
+            flex-wrap: nowrap;      /* Force single line */
         }
         
         .nav-links a, .dropdown > a {
@@ -94,6 +72,7 @@
         }
         .dropdown-content a:hover { background: #f8f9fa; color: #0066cc; }
 
+        /* Hamburger for mobile */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -228,7 +207,7 @@
     {% block content %}{% endblock %}
 
     <footer>
-        <p>&copy; 2026 Metalmen. All rights reserved. | Traceable • Sustainable • Global</p>
+        <p>&copy; 2026 Metalmen. All rights reserved.</p>
     </footer>
 
     <script>
