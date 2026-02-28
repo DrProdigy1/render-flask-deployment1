@@ -2,22 +2,12 @@
 {% block content %}
 
 <style>
-    .intro { 
-        padding: 140px 5% 100px; 
-        text-align: center; 
-        max-width: 900px; 
-        margin: 0 auto; 
-    }
     .category-section { 
-        display: none; 
         padding: 140px 5% 100px; 
         max-width: 1300px; 
         margin: 0 auto; 
         min-height: 100vh; 
         background: #f9f9f9; 
-    }
-    .category-section.active { 
-        display: block; 
     }
     .category-hero { 
         height: 500px; 
@@ -70,12 +60,6 @@
     }
 </style>
 
-<div class="intro" id="intro">
-    <h1 style="font-size:3.4rem;margin-bottom:1rem;color:#0066cc;">Our Commodities</h1>
-    <p style="font-size:1.4rem;margin-bottom:3rem;">Select a category from the navigation to view details.</p>
-    <a href="/contact" class="btn" style="font-size:1.2rem;">Get a Quote</a>
-</div>
-
 <!-- FERROUS -->
 <section id="ferrous" class="category-section">
     <div class="category-hero" style="background-image:url('{{ url_for('static', filename='images/ferrous.jpg') }}');">
@@ -105,11 +89,11 @@
         <div class="product-card"><h3>Aluminium UBC</h3><p>Used Beverage Cans — clean, sorted aluminium cans from post-consumer sources. High recovery rate and low contamination, ideal for can-to-can recycling.</p></div>
         <div class="product-card"><h3>Aluminium Bottlecaps</h3><p>Printed and coated aluminium screw caps and bottle closures. Consistent alloy composition suitable for remelting into new closure products or sheet.</p></div>
         <div class="product-card"><h3>Aluminium Foils</h3><p>Household and industrial aluminium foil scrap in clean, dry condition. Thin-gauge material perfect for secondary aluminium production and alloying.</p></div>
-        <div class="product-card"><h3>Tense (Aluminum Castings)</h3><p>This includes clean aluminum castings, often derived from automobile components like engine parts, transmission housings, and other automotive castings. These scraps are valuable for foundries and recycling facilities as they can be remelted and cast into new automotive or machinery parts, reducing the need for primary aluminum production.</p></div>
-        <div class="product-card"><h3>TT (Aluminum Sheet)</h3><p>TT consists of clean, old alloy aluminum sheets made from two or more alloys, free from contaminants like oil, Venetian blinds, screen wire, and other impurities. It’s particularly useful for manufacturing companies that repurpose it into new products like panels, roofing sheets, and various construction components.</p></div>
-        <div class="product-card"><h3>Telic (Mixed Aluminum Turnings)</h3><p>These are by-products of machining and manufacturing processes where aluminum is cut or shaped. Collected as shavings or turnings, this scrap can be efficiently melted and reused in alloy production, benefiting industries that require high-quality aluminum for casting.</p></div>
-        <div class="product-card"><h3>Aluminum Wheels</h3><p>Sourced from used vehicles, aluminum wheels are cleaned and processed for recycling. These scraps are valuable in the automotive and transportation industries, where they can be remolded into new wheel products or used in manufacturing lightweight automotive parts.</p></div>
-        <div class="product-card"><h3>Shredded Aluminum Scrap</h3><p>Shredded aluminum is produced from end-of-life vehicles and industrial waste. It is processed into smaller, clean fragments, making it easier to melt and use in industries like construction, automotive, and packaging for creating new aluminum sheets, extrusions, or components.</p></div>
+        <div class="product-card"><h3>Tense (Aluminum Castings)</h3><p>This includes clean aluminum castings, often derived from automobile components like engine parts, transmission housings, and other automotive castings. These scraps are valuable for foundries and recycling facilities as they can be remelted and cast into new automotive or machinery parts.</p></div>
+        <div class="product-card"><h3>TT (Aluminum Sheet)</h3><p>TT consists of clean, old alloy aluminum sheets made from two or more alloys, free from contaminants. It’s particularly useful for manufacturing companies that repurpose it into new products like panels, roofing sheets, and construction components.</p></div>
+        <div class="product-card"><h3>Telic (Mixed Aluminum Turnings)</h3><p>These are by-products of machining and manufacturing processes where aluminum is cut or shaped. Collected as shavings or turnings, this scrap can be efficiently melted and reused in alloy production.</p></div>
+        <div class="product-card"><h3>Aluminum Wheels</h3><p>Sourced from used vehicles, aluminum wheels are cleaned and processed for recycling. These scraps are valuable in the automotive and transportation industries.</p></div>
+        <div class="product-card"><h3>Shredded Aluminum Scrap</h3><p>Shredded aluminum is produced from end-of-life vehicles and industrial waste. It is processed into smaller, clean fragments, making it easier to melt and use in industries like construction, automotive, and packaging.</p></div>
         <div class="product-card"><h3>Zinc Score</h3><p>Clean, high-purity zinc die-cast scrap sorted for remelting. Low contamination levels make it ideal for zinc alloy production and galvanizing applications.</p></div>
         <div class="product-card"><h3>Zinc Diecast</h3><p>Used zinc die-casting parts and components from automotive, hardware and electronics industries. High zinc content suitable for direct remelting into new die-cast products.</p></div>
         <div class="product-card"><h3>Zinc Dross</h3><p>By-product zinc oxide-rich dross from galvanizing and zinc melting processes. Valuable secondary source for zinc recovery in smelting and chemical industries.</p></div>
@@ -172,23 +156,19 @@
 
 <script>
     function showCategory() {
-        const hash = window.location.hash.substring(1) || '';
+        const hash = window.location.hash.substring(1);
         const sections = document.querySelectorAll('.category-section');
-        const intro = document.getElementById('intro');
 
-        sections.forEach(section => section.classList.remove('active'));
-        if (intro) intro.style.display = 'none';
-
-        if (hash) {
-            const target = document.getElementById(hash);
-            if (target && target.classList.contains('category-section')) {
-                target.classList.add('active');
-            } else {
-                if (intro) intro.style.display = 'block';
-            }
-        } else {
-            if (intro) intro.style.display = 'block';
+        // If no hash (direct /services), show ALL sections
+        if (!hash) {
+            sections.forEach(section => section.style.display = 'block');
+            return;
         }
+
+        // If hash present, show only that section
+        sections.forEach(section => {
+            section.style.display = (section.id === hash) ? 'block' : 'none';
+        });
     }
 
     document.addEventListener('DOMContentLoaded', showCategory);
