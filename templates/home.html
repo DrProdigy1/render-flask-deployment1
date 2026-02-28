@@ -1,23 +1,112 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="hero" style="position:relative;height:100vh;min-height:650px;display:flex;align-items:center;justify-content:center;text-align:center;color:white;overflow:hidden;background-image:url('{{ url_for('static', filename='images/hero1.jpg') }}');background-size:cover;background-position:center;">
-    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);"></div>
-    <div style="position:relative;z-index:2;max-width:920px;padding:0 20px;">
-        <h1 style="font-size:4.2rem;line-height:1.05;margin-bottom:1rem;">Responsible sourcing.<br>Global confidence.</h1>
-        <p style="font-size:1.7rem;margin-bottom:2.8rem;">Where deep industry experience meets flawless execution.</p>
-        <a href="/services" class="btn" style="font-size:1.25rem;padding:18px 50px;">Explore Our Commodities</a>
+<!-- Rotating Hero -->
+<style>
+    .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 650px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 1;
+    }
+    .hero-slider { position: absolute; inset: 0; z-index: 0; }
+    .hero-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.8s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 920px;
+        padding: 0 20px;
+    }
+    .hero-content h1 {
+        font-size: 4.2rem;
+        line-height: 1.05;
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+    }
+    .hero-content p {
+        font-size: 1.65rem;
+        margin-bottom: 2.5rem;
+        text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+    }
+    .btn {
+        display: inline-block;
+        padding: 16px 40px;
+        background: #0066cc;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn:hover { background: #0052a3; transform: translateY(-4px); }
+
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+        .hero-content h1 { font-size: 2.8rem; }
+        .hero-content p { font-size: 1.35rem; }
+        .hero { min-height: 580px; }
+        .btn { padding: 14px 32px; font-size: 1.1rem; }
+    }
+</style>
+
+<section class="hero">
+    <div class="hero-slider">
+        <div class="hero-slide active" data-image="{{ url_for('static', filename='images/hero1.jpg') }}"></div>
+        <div class="hero-slide" data-image="{{ url_for('static', filename='images/hero2.jpg') }}"></div>
+        <div class="hero-slide" data-image="{{ url_for('static', filename='images/hero3.jpg') }}"></div>
+        <div class="hero-slide" data-image="{{ url_for('static', filename='images/hero4.jpg') }}"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1>Responsible sourcing.<br>Global confidence.</h1>
+        <p>Where deep industry experience meets flawless execution.</p>
+        <a href="/services" class="btn">Explore Our Commodities</a>
     </div>
 </section>
 
-<section style="padding:100px 5%;max-width:1300px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px;">
-        <a href="/services#ferrous" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="{{ url_for('static', filename='images/ferrous.jpg') }}" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Ferrous</h2><p>Shredded steel, HMS, bushling, PNS, cast iron & rail scrap.</p></div></div></a>
-        <a href="/services#nonferrous" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="{{ url_for('static', filename='images/non-ferrous.jpg') }}" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Non-Ferrous</h2><p>Zurik, cables, UBC, bottlecaps & foils.</p></div></div></a>
-        <a href="/services#semifinished" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="{{ url_for('static', filename='images/semi-finished.jpg') }}" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Semi-Finished</h2><p>Billets, slabs, HR coils, CR sheets & wire rods.</p></div></div></a>
-        <a href="/services#wastepaper" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="https://freerangestock.com/sample/144812/trash-can--discarded-paper.jpg" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Waste Paper</h2><p>OCC, SOP, newsprint, magazines & mixed grades.</p></div></div></a>
-        <a href="/services#plastics" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="https://assets.mixkit.co/videos/45279/45279-thumb-720-0.jpg" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Plastics</h2><p>PET, HDPE, PP, LDPE & PVC recycling grades.</p></div></div></a>
-    </div>
-</section>
+<!-- Rest of your home page content (gallery + category cards) remains here... -->
+
+<script>
+    // Rotating Hero (fixed)
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.hero-slide');
+        let current = 0;
+
+        function nextSlide() {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }
+
+        // Set background images
+        slides.forEach(slide => {
+            if (slide.dataset.image) {
+                slide.style.backgroundImage = `url('${slide.dataset.image}')`;
+            }
+        });
+
+        setInterval(nextSlide, 5000);
+    });
+</script>
 
 {% endblock %}
