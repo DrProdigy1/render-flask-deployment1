@@ -1,56 +1,23 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="max-w-4xl mx-auto px-6 py-20">
-    <h1 class="text-6xl font-bold text-center mb-16">Contact Us</h1>
 
-    <div class="prose prose-lg mx-auto text-gray-800 leading-relaxed text-center md:text-left max-w-2xl">
-        <p class="text-xl mb-12">
-            We'd love to hear from you. Reach out using the details below.
-        </p>
+<style>
+    .contact-hero { padding: 140px 5% 80px; text-align: center; background: #f8f9fa; }
+    .contact-hero h1 { font-size: 3.4rem; margin-bottom: 1rem; }
+    .contact-info { max-width: 700px; margin: 60px auto; text-align: left; font-size: 1.2rem; }
+</style>
 
-        <div class="space-y-12">
-            <!-- Email -->
-            <div>
-                <h2 class="text-3xl font-semibold mb-4">Email</h2>
-                <p class="text-2xl">
-                    <a href="mailto:info@metalmen.com" class="text-blue-600 hover:underline">
-                        info@metalmen.com
-                    </a>
-                </p>
-                <p class="text-lg text-gray-600 mt-2">
-                    For general enquiries, quotations, or partnership discussions.
-                </p>
-            </div>
+<section class="contact-hero">
+    <h1>Contact Us</h1>
+    <p>We’re ready to help with your metal sourcing needs.</p>
+</section>
 
-            <!-- Phone (optional - remove this div if you don't want a phone number) -->
-            <div>
-                <h2 class="text-3xl font-semibold mb-4">Phone</h2>
-                <p class="text-2xl">+44 7469173216</p>
-                <p class="text-lg text-gray-600 mt-2">
-                    Business hours: Monday to Friday, 9:00 AM – 6:00 PM
-                </p>
-            </div>
-
-            <!-- Postal Address -->
-            <div>
-                <h2 class="text-3xl font-semibold mb-4">Postal Address</h2>
-                <address class="text-2xl not-italic leading-relaxed">
-                    Metalmen<br>
-                    [Your Street Address]<br>
-                    [City, Region]<br>
-                    Postcode: [Your Postcode / ZIP Code]<br>
-                    [Country]
-                </address>
-                <p class="text-lg text-gray-600 mt-4">
-                    Registered office / head office location.
-                </p>
-            </div>
-        </div>
-
-        <p class="mt-16 text-xl text-gray-600">
-            We aim to respond to all enquiries within 24–48 business hours.
-        </p>
-    </div>
+<div class="contact-info">
+    <p><strong>Email:</strong> info@metalmen.com</p>
+    <p><strong>Phone:</strong> +44 7469 173216</p>
+    <p><strong>Hours:</strong> Monday–Friday, 9:00–18:00 GMT</p>
+    <p><strong>Address:</strong><br>METALMEN LIMITED <br>6TH FLOOR, FIRST CENTRAL 200,
+        2 LAKESIDE DRIVE, PARK ROYAL<br>LONDON NW107FQ</p>
 </div>
+
 {% endblock %}
