@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>Metalmen • Responsible Metal Sourcing</title>
     <style>
+        :root { color-scheme: light; }
+        html { color-scheme: light; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #111; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            line-height: 1.6; 
+            color: #111; 
+            background: #fff;
+        }
 
         nav {
             background: #fff;
@@ -22,16 +30,22 @@
             box-shadow: 0 1px 0 rgba(0,0,0,0.08);
         }
         .logo img { height: 48px; }
+        
         .nav-links {
             display: flex;
-            gap: 48px;
+            gap: 32px;              /* Reduced gap so everything fits on one line */
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 1.02rem;
+            align-items: center;    /* Perfect vertical alignment */
+            flex-wrap: nowrap;      /* Force single line */
         }
+        
         .nav-links a, .dropdown > a {
             color: #111;
             text-decoration: none;
             padding: 12px 0;
+            line-height: 1.4;
+            white-space: nowrap;
         }
         .nav-links a:hover, .dropdown > a:hover { color: #0066cc; }
 
@@ -69,7 +83,6 @@
             width: 25px;
             height: 3px;
             background: #111;
-            transition: 0.3s;
         }
 
         footer {
@@ -105,7 +118,6 @@
             }
             .nav-links.active { display: flex; }
             .hamburger { display: flex; }
-            .nav-links a, .dropdown > a { padding: 15px 0; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -113,17 +125,75 @@
 
     <nav>
         <a href="/" class="logo">
-            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Metalmen" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Metalmen" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
             <strong style="color:#111;font-size:24px;font-weight:700;display:none;">METALMEN</strong>
         </a>
         
         <div class="nav-links" id="navLinks">
-            <!-- Your dropdowns -->
-            <div class="dropdown"><a href="/services#ferrous">Ferrous</a><div class="dropdown-content">...</div></div>
-            <div class="dropdown"><a href="/services#nonferrous">Non-Ferrous</a><div class="dropdown-content">...</div></div>
-            <div class="dropdown"><a href="/services#semifinished">Semi-Finished</a><div class="dropdown-content">...</div></div>
-            <div class="dropdown"><a href="/services#wastepaper">Waste Paper</a><div class="dropdown-content">...</div></div>
-            <div class="dropdown"><a href="/services#plastics">Plastics</a><div class="dropdown-content">...</div></div>
+            <div class="dropdown">
+                <a href="/services#ferrous">Ferrous</a>
+                <div class="dropdown-content">
+                    <a href="/services#ferrous">Shredded Steel Scrap</a>
+                    <a href="/services#ferrous">HMS</a>
+                    <a href="/services#ferrous">Bushling</a>
+                    <a href="/services#ferrous">PNS</a>
+                    <a href="/services#ferrous">Cast Iron</a>
+                    <a href="/services#ferrous">Rail Scrap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="/services#nonferrous">Non-Ferrous</a>
+                <div class="dropdown-content">
+                    <a href="/services#nonferrous">Zurik</a>
+                    <a href="/services#nonferrous">Copper and Aluminium Cables</a>
+                    <a href="/services#nonferrous">Aluminium UBC</a>
+                    <a href="/services#nonferrous">Aluminium Bottlecaps</a>
+                    <a href="/services#nonferrous">Aluminium Foils</a>
+                    <a href="/services#nonferrous">Tense</a>
+                    <a href="/services#nonferrous">TT</a>
+                    <a href="/services#nonferrous">Telic</a>
+                    <a href="/services#nonferrous">Aluminum Wheels</a>
+                    <a href="/services#nonferrous">Shredded Aluminum Scrap</a>
+                    <a href="/services#nonferrous">Zinc Score</a>
+                    <a href="/services#nonferrous">Zinc Diecast</a>
+                    <a href="/services#nonferrous">Zinc Dross</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="/services#semifinished">Semi-Finished</a>
+                <div class="dropdown-content">
+                    <a href="/services#semifinished">Billets</a>
+                    <a href="/services#semifinished">Slabs</a>
+                    <a href="/services#semifinished">Hot-Rolled Coils</a>
+                    <a href="/services#semifinished">Cold-Rolled Sheets</a>
+                    <a href="/services#semifinished">Wire Rods</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="/services#wastepaper">Waste Paper</a>
+                <div class="dropdown-content">
+                    <a href="/services#wastepaper">OCC</a>
+                    <a href="/services#wastepaper">Sorted Office Paper</a>
+                    <a href="/services#wastepaper">Newsprint</a>
+                    <a href="/services#wastepaper">Magazines</a>
+                    <a href="/services#wastepaper">Mixed Paper</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="/services#plastics">Plastics</a>
+                <div class="dropdown-content">
+                    <a href="/services#plastics">PET</a>
+                    <a href="/services#plastics">HDPE</a>
+                    <a href="/services#plastics">PP</a>
+                    <a href="/services#plastics">LDPE</a>
+                    <a href="/services#plastics">PVC</a>
+                </div>
+            </div>
+
             <a href="/gallery">Gallery</a>
             <a href="/about">About</a>
             <a href="/contact">Contact</a>
@@ -137,7 +207,7 @@
     {% block content %}{% endblock %}
 
     <footer>
-        <p>&copy; 2026 Metalmen. All rights reserved. | Traceable • Sustainable • Global</p>
+        <p>&copy; 2026 Metalmen. All rights reserved.</p>
     </footer>
 
     <script>
