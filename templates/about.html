@@ -1,14 +1,71 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="max-w-5xl mx-auto px-6 py-20">
-    <h1 class="text-6xl font-bold text-center mb-16">About Us</h1>
-    
-    <div class="prose prose-lg mx-auto text-gray-800 leading-relaxed">
-        <p>Metalmen stands as a trusted pioneer in the commodity trading (recyclable products) industry, delivering unmatched expertise and reliability. With over a decade of proven experience, we empower industrial manufacturers by supplying high‑quality non‑ferrous, ferrous, and other essential commodities—ensuring seamless production, consistent supply, and long‑term value and powered by promoters who bring a combined 50 years of deep, hands‑on experience. We don’t just supply materials — we secure the lifeline of manufacturing. From non‑ferrous and ferrous metals to a wide range of essential industrial commodities, we deliver with precision, speed, and unwavering reliability. Our expertise, scale, and relentless commitment to performance make Metalmen the partner of choice for manufacturers who demand consistency, competitiveness, and an edge in their supply chain.</p>
 
-        <h2 class="text-4xl font-bold mt-16 mb-8">Mission Statement</h2>
-        <p>Our mission is to strengthen global manufacturing by delivering reliable, high‑quality recyclable products backed by deep expertise and trans‑continental reach. We are committed to building sustainable, resilient supply chains through consistent value, responsible sourcing, and unmatched market insight — empowering industries to grow stronger, smarter, and greener.</p>
-    </div>
+<style>
+    .about-hero {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ url_for('static', filename='images/hero1.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        padding: 180px 5% 120px;
+        text-align: center;
+        color: white;
+    }
+    .about-hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+    }
+    .about-hero p {
+        font-size: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+    .about-content {
+        padding: 100px 5%;
+        max-width: 1000px;
+        margin: 0 auto;
+        font-size: 1.15rem;
+    }
+    .about-content h2 {
+        font-size: 2.2rem;
+        margin: 60px 0 25px;
+    }
+    .about-content ul {
+        list-style: disc;
+        padding-left: 30px;
+        margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+        .about-hero h1 { font-size: 2.6rem; }
+        .about-hero p { font-size: 1.3rem; }
+    }
+</style>
+
+<section class="about-hero">
+    <h1>About Metalmen</h1>
+    <p>Global leaders in responsible sourcing of traceable metals and materials for sustainable industries.</p>
+</section>
+
+<div class="about-content">
+    <h2>Our Mission</h2>
+    <p>At Metalmen, we bridge the gap between ethical sourcing and global manufacturing. Founded in 2017, we've grown to become a trusted partner for industries requiring verifiable, high-quality recyclable and semi-finished metals.</p>
+
+    <h2>Why Choose Us?</h2>
+    <ul>
+        <li>Full traceability from mine to delivery</li>
+        <li>Commitment to circular economy principles</li>
+        <li>Worldwide logistics network</li>
+        <li>Custom solutions for volume and specifications</li>
+        <li>Dedicated to sustainability and ethical practices</li>
+    </ul>
+
+    <h2>Our Team</h2>
+    <p>Backed by experts in metallurgy, supply chain, and international trade, our team ensures every shipment meets the highest standards of quality and compliance.</p>
+
+    <p style="text-align: center; margin-top: 60px;">
+        <a href="/contact" class="btn">Join Our Network</a>
+    </p>
 </div>
+
 {% endblock %}
