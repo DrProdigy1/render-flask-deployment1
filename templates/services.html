@@ -1,71 +1,198 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="py-20 md:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-        <!-- Header -->
-        <div class="text-center mb-16 md:mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
-                Our Core Commodities
-            </h1>
-            <p class="mt-5 text-xl md:text-2xl text-gray-600">
-                Reliable supply of essential recyclable and semi-finished materials
-            </p>
-        </div>
 
-        <!-- Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
-            {% for service in services %}
-            <div class="group bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                 onclick="toggleCard(this)">
+<style>
+    .intro { 
+        padding: 140px 5% 100px; 
+        text-align: center; 
+        max-width: 900px; 
+        margin: 0 auto; 
+    }
+    .category-section { 
+        display: none; 
+        padding: 140px 5% 100px; 
+        max-width: 1300px; 
+        margin: 0 auto; 
+        min-height: 100vh; 
+        background: #f9f9f9; 
+    }
+    .category-section.active { 
+        display: block; 
+    }
+    .category-hero { 
+        height: 500px; 
+        background-size: cover; 
+        background-position: center; 
+        position: relative; 
+        border-radius: 16px; 
+        margin-bottom: 60px; 
+    }
+    .category-hero::before { 
+        content: ''; 
+        position: absolute; 
+        inset: 0; 
+        background: rgba(0,0,0,0.45); 
+        border-radius: 16px; 
+    }
+    .category-hero h1 { 
+        position: absolute; 
+        bottom: 70px; 
+        left: 70px; 
+        color: white; 
+        font-size: 3.6rem; 
+        text-shadow: 0 4px 20px rgba(0,0,0,0.8); 
+    }
+    .product-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
+        gap: 40px; 
+    }
+    .product-card { 
+        background: white; 
+        padding: 35px; 
+        border-radius: 12px; 
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
+    }
+    .product-card h3 { 
+        color: #0066cc; 
+        font-size: 1.65rem; 
+        margin-bottom: 15px; 
+    }
+    .btn { 
+        background: #0066cc; 
+        color: white; 
+        padding: 16px 40px; 
+        border-radius: 6px; 
+        text-decoration: none; 
+        font-weight: 600; 
+        display: inline-block; 
+        margin-top: 20px; 
+    }
+</style>
 
-                <!-- Your photo -->
-                <img 
-                    src="{{ url_for('static', filename='images/' + service.image) }}" 
-                    alt="{{ service.title }}" 
-                    class="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-700">
-
-                <div class="p-8 md:p-10">
-                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
-                        {{ service.title }}
-                    </h3>
-
-                    <!-- Teaser (shown by default) -->
-                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed teaser">
-                        {{ service.desc | truncate(140) }}…
-                        <span class="text-blue-600 font-semibold ml-1">Read more ↓</span>
-                    </p>
-
-                    <!-- Full description (hidden until clicked) -->
-                    <div class="details hidden mt-6 text-gray-700 text-lg leading-relaxed">
-                        <p>{{ service.desc }}</p>
-                        <p class="mt-8 font-medium text-blue-600">
-                            Ready to discuss supply? 
-                            <a href="/contact" class="underline hover:text-blue-800">
-                                Contact us for quotes and specifications
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <!-- Bottom note -->
-        <div class="text-center mt-20 text-gray-500 text-base">
-            <p>All commodities sourced responsibly with full traceability.<br>
-            Custom volumes, grades and delivery terms available on request.</p>
-        </div>
-    </div>
+<div class="intro" id="intro">
+    <h1 style="font-size:3.4rem;margin-bottom:1rem;color:#0066cc;">Our Commodities</h1>
+    <p style="font-size:1.4rem;margin-bottom:3rem;">Select a category from the navigation to view details.</p>
+    <a href="/contact" class="btn" style="font-size:1.2rem;">Get a Quote</a>
 </div>
 
-<!-- Simple & reliable toggle script -->
+<!-- FERROUS -->
+<section id="ferrous" class="category-section">
+    <div class="category-hero" style="background-image:url('{{ url_for('static', filename='images/ferrous.jpg') }}');">
+        <h1>Ferrous</h1>
+    </div>
+    <div class="product-grid">
+        <div class="product-card"><h3>Shredded Steel Scrap</h3><p>High-density shredded steel from end-of-life vehicles and industrial sources. Clean, consistent chemistry, ideal for electric arc furnaces.</p></div>
+        <div class="product-card"><h3>HMS</h3><p>Premium HMS #1 and #2 scrap. Heavy, clean, free from contaminants, perfect for electric arc furnaces.</p></div>
+        <div class="product-card"><h3>Bushling</h3><p>Clean, uncoated steel punching and stamping scrap. High yield and low residual content.</p></div>
+        <div class="product-card"><h3>PNS</h3><p>Heavy structural steel scrap from plates, beams and channels. Excellent for foundries and mills.</p></div>
+        <div class="product-card"><h3>Cast Iron</h3><p>Grey and ductile cast iron scrap in various forms. High carbon content for foundry use.</p></div>
+        <div class="product-card"><h3>Rail Scrap</h3><p>Used railway rails and accessories. Heavy, dense, high-quality carbon steel.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:60px;">
+        <a href="/contact" class="btn">Get Ferrous Quote</a>
+    </div>
+</section>
+
+<!-- NON-FERROUS -->
+<section id="nonferrous" class="category-section">
+    <div class="category-hero" style="background-image:url('{{ url_for('static', filename='images/non-ferrous.jpg') }}');">
+        <h1>Non-Ferrous</h1>
+    </div>
+    <div class="product-grid">
+        <div class="product-card"><h3>Zurik</h3><p>High-value stainless and non-ferrous mix recovered from shredded Zorba fraction. Excellent for stainless steel production and alloy recovery.</p></div>
+        <div class="product-card"><h3>Copper and Aluminium Cables</h3><p>Insulated and bare copper/aluminium cables from electrical and telecom applications. High-purity conductors ready for stripping and smelting.</p></div>
+        <div class="product-card"><h3>Aluminium UBC</h3><p>Used Beverage Cans — clean, sorted aluminium cans from post-consumer sources. High recovery rate and low contamination, ideal for can-to-can recycling.</p></div>
+        <div class="product-card"><h3>Aluminium Bottlecaps</h3><p>Printed and coated aluminium screw caps and bottle closures. Consistent alloy composition suitable for remelting into new closure products or sheet.</p></div>
+        <div class="product-card"><h3>Aluminium Foils</h3><p>Household and industrial aluminium foil scrap in clean, dry condition. Thin-gauge material perfect for secondary aluminium production and alloying.</p></div>
+        <div class="product-card"><h3>Tense (Aluminum Castings)</h3><p>This includes clean aluminum castings, often derived from automobile components like engine parts, transmission housings, and other automotive castings. These scraps are valuable for foundries and recycling facilities as they can be remelted and cast into new automotive or machinery parts, reducing the need for primary aluminum production.</p></div>
+        <div class="product-card"><h3>TT (Aluminum Sheet)</h3><p>TT consists of clean, old alloy aluminum sheets made from two or more alloys, free from contaminants like oil, Venetian blinds, screen wire, and other impurities. It’s particularly useful for manufacturing companies that repurpose it into new products like panels, roofing sheets, and various construction components.</p></div>
+        <div class="product-card"><h3>Telic (Mixed Aluminum Turnings)</h3><p>These are by-products of machining and manufacturing processes where aluminum is cut or shaped. Collected as shavings or turnings, this scrap can be efficiently melted and reused in alloy production, benefiting industries that require high-quality aluminum for casting.</p></div>
+        <div class="product-card"><h3>Aluminum Wheels</h3><p>Sourced from used vehicles, aluminum wheels are cleaned and processed for recycling. These scraps are valuable in the automotive and transportation industries, where they can be remolded into new wheel products or used in manufacturing lightweight automotive parts.</p></div>
+        <div class="product-card"><h3>Shredded Aluminum Scrap</h3><p>Shredded aluminum is produced from end-of-life vehicles and industrial waste. It is processed into smaller, clean fragments, making it easier to melt and use in industries like construction, automotive, and packaging for creating new aluminum sheets, extrusions, or components.</p></div>
+        <div class="product-card"><h3>Zinc Score</h3><p>Clean, high-purity zinc die-cast scrap sorted for remelting. Low contamination levels make it ideal for zinc alloy production and galvanizing applications.</p></div>
+        <div class="product-card"><h3>Zinc Diecast</h3><p>Used zinc die-casting parts and components from automotive, hardware and electronics industries. High zinc content suitable for direct remelting into new die-cast products.</p></div>
+        <div class="product-card"><h3>Zinc Dross</h3><p>By-product zinc oxide-rich dross from galvanizing and zinc melting processes. Valuable secondary source for zinc recovery in smelting and chemical industries.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:60px;">
+        <a href="/contact" class="btn">Get Non-Ferrous Quote</a>
+    </div>
+</section>
+
+<!-- SEMI-FINISHED -->
+<section id="semifinished" class="category-section">
+    <div class="category-hero" style="background-image:url('{{ url_for('static', filename='images/semi-finished.jpg') }}');">
+        <h1>Semi-Finished Products</h1>
+    </div>
+    <div class="product-grid">
+        <div class="product-card"><h3>Billets</h3><p>Continuous cast steel billets in various grades and sizes for re-rolling and forging.</p></div>
+        <div class="product-card"><h3>Slabs</h3><p>Hot-rolled slabs ready for plate and coil production.</p></div>
+        <div class="product-card"><h3>Hot-Rolled Coils</h3><p>Prime and secondary HR coils in structural and commercial qualities.</p></div>
+        <div class="product-card"><h3>Cold-Rolled Sheets</h3><p>High-quality CR sheets for automotive and appliance manufacturing.</p></div>
+        <div class="product-card"><h3>Wire Rods</h3><p>Low and high carbon wire rods for drawing and fastener production.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:60px;">
+        <a href="/contact" class="btn">Get Semi-Finished Quote</a>
+    </div>
+</section>
+
+<!-- WASTE PAPER -->
+<section id="wastepaper" class="category-section">
+    <div class="category-hero" style="background-image:url('https://freerangestock.com/sample/144812/trash-can--discarded-paper.jpg');">
+        <h1>Waste Paper</h1>
+    </div>
+    <div class="product-grid">
+        <div class="product-card"><h3>OCC</h3><p>High-grade kraft corrugated boxes, ideal for paperboard manufacturing.</p></div>
+        <div class="product-card"><h3>Sorted Office Paper</h3><p>White office paper, free from contaminants, excellent for de-inking and tissue production.</p></div>
+        <div class="product-card"><h3>Newsprint</h3><p>Used newspapers and inserts in bales for newsprint recycling.</p></div>
+        <div class="product-card"><h3>Magazines</h3><p>Glossy coated magazines and catalogues for high-quality fibre recovery.</p></div>
+        <div class="product-card"><h3>Mixed Paper</h3><p>General mixed paper grades for board and packaging production.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:60px;">
+        <a href="/contact" class="btn">Get Waste Paper Quote</a>
+    </div>
+</section>
+
+<!-- PLASTICS -->
+<section id="plastics" class="category-section">
+    <div class="category-hero" style="background-image:url('https://assets.mixkit.co/videos/45279/45279-thumb-720-0.jpg');">
+        <h1>Plastics</h1>
+    </div>
+    <div class="product-grid">
+        <div class="product-card"><h3>PET</h3><p>Clear and coloured PET bottles and preforms for bottle-to-bottle recycling.</p></div>
+        <div class="product-card"><h3>HDPE</h3><p>High-density polyethylene containers, drums and crates.</p></div>
+        <div class="product-card"><h3>PP</h3><p>Polypropylene caps, crates and automotive parts.</p></div>
+        <div class="product-card"><h3>LDPE</h3><p>Low-density polyethylene film, bags and stretch wrap.</p></div>
+        <div class="product-card"><h3>PVC</h3><p>Rigid and flexible PVC pipe, profiles and window frames.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:60px;">
+        <a href="/contact" class="btn">Get Plastics Quote</a>
+    </div>
+</section>
+
 <script>
-    function toggleCard(card) {
-        const details = card.querySelector('.details');
-        const teaser  = card.querySelector('.teaser');
-        details.classList.toggle('hidden');
-        teaser.classList.toggle('hidden');
+    function showCategory() {
+        const hash = window.location.hash.substring(1) || '';
+        const sections = document.querySelectorAll('.category-section');
+        const intro = document.getElementById('intro');
+
+        sections.forEach(section => section.classList.remove('active'));
+        if (intro) intro.style.display = 'none';
+
+        if (hash) {
+            const target = document.getElementById(hash);
+            if (target && target.classList.contains('category-section')) {
+                target.classList.add('active');
+            } else {
+                if (intro) intro.style.display = 'block';
+            }
+        } else {
+            if (intro) intro.style.display = 'block';
+        }
     }
+
+    document.addEventListener('DOMContentLoaded', showCategory);
+    window.addEventListener('hashchange', showCategory);
 </script>
+
 {% endblock %}
