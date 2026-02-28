@@ -1,118 +1,22 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<!-- Hero: Full-screen, visual-first – like Apple's product heroes -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden bg-black">
-    <!-- Background image – replace with your best high-res metal/recycling/shipping shot -->
-    <div class="absolute inset-0">
-        <img 
-            src="{{ url_for('static', filename='images/hero-premium-metals.jpg') }}" 
-            alt="Premium responsibly sourced materials" 
-            class="w-full h-full object-cover brightness-75 scale-105 transition-transform duration-[1500ms] ease-out"
-        >
-        <!-- Stronger overlay for readability on dark image -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-    </div>
-
-    <!-- Content – centered, minimal text -->
-    <div class="relative z-10 text-center px-6 max-w-5xl">
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white leading-none mb-6">
-            Responsible sourcing.<br>Global confidence.
-        </h1>
-        <p class="text-xl md:text-3xl text-gray-200 font-light max-w-3xl mx-auto">
-            Traceable metals and materials for the industries shaping tomorrow.
-        </p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="/services" class="px-10 py-5 bg-white text-black text-lg font-medium rounded-full hover:bg-gray-200 transition">
-                Discover Commodities
-            </a>
-            <a href="/contact" class="px-10 py-5 border-2 border-white text-white text-lg font-medium rounded-full hover:bg-white/10 transition">
-                Contact Us
-            </a>
-        </div>
+<section class="hero" style="position:relative;height:100vh;min-height:650px;display:flex;align-items:center;justify-content:center;text-align:center;color:white;overflow:hidden;background-image:url('{{ url_for('static', filename='images/hero1.jpg') }}');background-size:cover;background-position:center;">
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);"></div>
+    <div style="position:relative;z-index:2;max-width:920px;padding:0 20px;">
+        <h1 style="font-size:4.2rem;line-height:1.05;margin-bottom:1rem;">Responsible sourcing.<br>Global confidence.</h1>
+        <p style="font-size:1.7rem;margin-bottom:2.8rem;">Where deep industry experience meets flawless execution.</p>
+        <a href="/services" class="btn" style="font-size:1.25rem;padding:18px 50px;">Explore Our Commodities</a>
     </div>
 </section>
 
-<!-- Value pillars – large, centered, icon + short text (Apple-style simplicity) -->
-<section class="py-32 md:py-48 bg-white">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 text-center">
-        <div>
-            <div class="mb-10">
-                <!-- Replace with actual SVG/icon if you have; or use emoji/temp image -->
-                <img src="{{ url_for('static', filename='images/icon-trace.svg') }}" alt="Traceability" class="h-24 mx-auto">
-            </div>
-            <h3 class="text-4xl font-semibold mb-6">Full Traceability</h3>
-            <p class="text-xl text-gray-600">Every lot documented from origin to delivery.</p>
-        </div>
-        <div>
-            <div class="mb-10">
-                <img src="{{ url_for('static', filename='images/icon-global.svg') }}" alt="Global" class="h-24 mx-auto">
-            </div>
-            <h3 class="text-4xl font-semibold mb-6">Worldwide Delivery</h3>
-            <p class="text-xl text-gray-600">Reliable supply to every major market.</p>
-        </div>
-        <div>
-            <div class="mb-10">
-                <img src="{{ url_for('static', filename='images/icon-circular.svg') }}" alt="Sustainable" class="h-24 mx-auto">
-            </div>
-            <h3 class="text-4xl font-semibold mb-6">Circular Future</h3>
-            <p class="text-xl text-gray-600">Powering sustainable manufacturing.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Commodities teaser – big images, minimal text, scroll-reveal feel -->
-<section class="py-32 md:py-48 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-20">
-            <h2 class="text-5xl md:text-7xl font-semibold tracking-tight text-gray-900">
-                Our Core Materials
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {% for service in services[:3] %}
-            <a href="/services" class="group block rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500">
-                <div class="aspect-[4/3] overflow-hidden">
-                    <img 
-                        src="{{ url_for('static', filename='images/' + service.image) }}" 
-                        alt="{{ service.title }}" 
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                    >
-                </div>
-                <div class="p-10 text-center">
-                    <h3 class="text-3xl font-semibold text-gray-900 mb-4">
-                        {{ service.title }}
-                    </h3>
-                    <p class="text-lg text-gray-600 line-clamp-2">
-                        {{ service.desc | truncate(100) }}
-                    </p>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-
-        <div class="text-center mt-20">
-            <a href="/services" class="inline-block px-12 py-6 bg-black text-white text-xl font-medium rounded-full hover:bg-gray-800 transition">
-                See All Commodities →
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Final strong CTA – full-width, bold -->
-<section class="py-32 bg-black text-white">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-        <h2 class="text-5xl md:text-6xl font-semibold mb-10">
-            Secure Your Supply Today
-        </h2>
-        <p class="text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            Custom volumes, grades, and terms — let's discuss your needs.
-        </p>
-        <a href="/contact" class="inline-block px-16 py-8 bg-white text-black text-2xl font-semibold rounded-full hover:bg-gray-200 transition">
-            Get a Quote
-        </a>
+<section style="padding:100px 5%;max-width:1300px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px;">
+        <a href="/services#ferrous" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="{{ url_for('static', filename='images/ferrous.jpg') }}" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Ferrous</h2><p>Shredded steel, HMS, bushling, PNS, cast iron & rail scrap.</p></div></div></a>
+        <a href="/services#nonferrous" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="{{ url_for('static', filename='images/non-ferrous.jpg') }}" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Non-Ferrous</h2><p>Zurik, cables, UBC, bottlecaps & foils.</p></div></div></a>
+        <a href="/services#semifinished" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="{{ url_for('static', filename='images/semi-finished.jpg') }}" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Semi-Finished</h2><p>Billets, slabs, HR coils, CR sheets & wire rods.</p></div></div></a>
+        <a href="/services#wastepaper" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="https://freerangestock.com/sample/144812/trash-can--discarded-paper.jpg" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Waste Paper</h2><p>OCC, SOP, newsprint, magazines & mixed grades.</p></div></div></a>
+        <a href="/services#plastics" style="text-decoration:none;color:inherit;"><div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform .3s;"><img src="https://assets.mixkit.co/videos/45279/45279-thumb-720-0.jpg" style="width:100%;height:240px;object-fit:cover;"><div style="padding:30px 25px;background:white;"><h2 style="font-size:1.9rem;margin-bottom:10px;color:#0066cc;">Plastics</h2><p>PET, HDPE, PP, LDPE & PVC recycling grades.</p></div></div></a>
     </div>
 </section>
 
