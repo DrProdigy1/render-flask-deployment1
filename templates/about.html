@@ -31,6 +31,14 @@
         font-size: 2.2rem;
         margin: 60px 0 25px;
     }
+    .about-image {
+        width: 100%;
+        max-width: 900px;
+        border-radius: 16px;
+        margin: 60px auto;
+        display: block;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
     .about-content ul {
         list-style: disc;
         padding-left: 30px;
@@ -49,7 +57,7 @@
 
 <div class="about-content">
     <h2>Our Mission</h2>
-    <p>At Metalmen, we bridge the gap between ethical sourcing and global manufacturing. Founded in 2017, we've grown to become a trusted partner for industries requiring verifiable, high-quality recyclable and semi-finished metals.</p>
+    <p>At Metalmen, we bridge the gap between ethical sourcing and global manufacturing. Founded in 2020, we've grown to become a trusted partner for industries requiring verifiable, high-quality recyclable and semi-finished metals.</p>
 
     <h2>Why Choose Us?</h2>
     <ul>
@@ -62,6 +70,9 @@
 
     <h2>Our Team</h2>
     <p>Backed by experts in metallurgy, supply chain, and international trade, our team ensures every shipment meets the highest standards of quality and compliance.</p>
+
+    <!-- Your about.jpg image added here -->
+    <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="About Metalmen" class="about-image">
 
     <p style="text-align: center; margin-top: 60px;">
         <a href="/contact" class="btn">Join Our Network</a>
