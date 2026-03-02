@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{% block content %}
-
-<!-- Rotating Hero -->
+{% block content %}<!-- Rotating Hero -->
 <style>
     .hero {
         position: relative;
@@ -60,7 +58,7 @@
     }
     .btn:hover { background: #0052a3; transform: translateY(-4px); }
 
-    /* Tesla / Apple Style Video Section */
+    /* Premium Video Section - Tesla / Apple Style (10% smaller) */
     .video-section {
         padding: 160px 5% 140px;
         background: #000;
@@ -79,7 +77,7 @@
         opacity: 0.9;
     }
     .video-wrapper {
-        max-width: 1100px;
+        max-width: 990px;  /* 10% smaller than 1100px */
         margin: 0 auto;
         border-radius: 24px;
         overflow: hidden;
@@ -95,25 +93,24 @@
         <div class="hero-slide" data-image="{{ url_for('static', filename='images/hero4.jpg') }}"></div>
     </div>
 
-    <div class="hero-content">
-        <h1>Responsible sourcing.<br>Global confidence.</h1>
-        <p>Where deep industry experience meets flawless execution.</p>
-        <a href="/services" class="btn">Explore Our Commodities</a>
-    </div>
-</section>
+<div class="hero-content">
+    <h1>Responsible sourcing.
+Global confidence.</h1>
+    <p>Where deep industry experience meets flawless execution.</p>
+    <a href="/services" class="btn">Explore Our Commodities</a>
+</div></section>
 
-<!-- Premium Video Section (Tesla / Apple Style) -->
+<!-- Premium Video Section -->
 <section class="video-section">
     <h2>Inside Our Operations</h2>
     <p>Watch how we responsibly collect, sort, and process scrap metal every day.</p>
     
-    <div class="video-wrapper">
-        <video controls autoplay muted loop playsinline style="width:100%;display:block;">
-            <source src="{{ url_for('static', filename='images/scrap-yard operations.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-</section>
+<div class="video-wrapper">
+    <video controls autoplay muted loop playsinline style="width:100%;display:block;">
+        <source src="{{ url_for('static', filename='images/scrap-yard operations.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div></section>
 
 <!-- Animated Statistics -->
 <section style="padding:90px 5%;background:#fff;">
@@ -211,6 +208,34 @@
 
         setInterval(nextSlide, 5000);
     });
+
+    // Animated Statistics
+    function animateValue(id, start, end, duration, suffix = '') {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            document.getElementById(id).textContent = value + suffix;
+            if (progress < 1) window.requestAnimationFrame(step);
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateValue("stat1", 0, 100, 1800, "+");
+                animateValue("stat2", 0, 10, 1800, "+");
+                animateValue("stat3", 0, 20, 1800, "+");
+                animateValue("stat4", 0, 90, 1800, "%");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector('#stat1').parentElement.parentElement);
 </script>
 
 {% endblock %}
+
