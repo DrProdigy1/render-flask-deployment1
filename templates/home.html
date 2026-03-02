@@ -60,9 +60,30 @@
     }
     .btn:hover { background: #0052a3; transform: translateY(-4px); }
 
-    @media (max-width: 768px) {
-        .hero-content h1 { font-size: 2.8rem; }
-        .hero-content p { font-size: 1.35rem; }
+    /* Tesla / Apple Style Video Section */
+    .video-section {
+        padding: 160px 5% 140px;
+        background: #000;
+        color: white;
+        text-align: center;
+    }
+    .video-section h2 {
+        font-size: 3.4rem;
+        margin-bottom: 24px;
+        letter-spacing: -1px;
+    }
+    .video-section p {
+        font-size: 1.45rem;
+        max-width: 680px;
+        margin: 0 auto 60px;
+        opacity: 0.9;
+    }
+    .video-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.7);
     }
 </style>
 
@@ -78,6 +99,19 @@
         <h1>Responsible sourcing.<br>Global confidence.</h1>
         <p>Where deep industry experience meets flawless execution.</p>
         <a href="/services" class="btn">Explore Our Commodities</a>
+    </div>
+</section>
+
+<!-- Premium Video Section (Tesla / Apple Style) -->
+<section class="video-section">
+    <h2>Inside Our Operations</h2>
+    <p>Watch how we responsibly collect, sort, and process scrap metal every day.</p>
+    
+    <div class="video-wrapper">
+        <video controls autoplay muted loop playsinline style="width:100%;display:block;">
+            <source src="{{ url_for('static', filename='images/scrap-yard operations.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 </section>
 
@@ -105,7 +139,7 @@
     </div>
 </section>
 
-<!-- Tesla-style Big Clickable Product Showcase -->
+<!-- Big Clickable Product Showcase -->
 <section style="padding:100px 5%;background:#f9f9f9;">
     <div style="max-width:1300px;margin:0 auto;">
         <h2 style="text-align:center;font-size:2.8rem;margin-bottom:60px;color:#0066cc;">Our Main Commodities</h2>
@@ -177,33 +211,6 @@
 
         setInterval(nextSlide, 5000);
     });
-
-    // Animated Statistics Counters
-    function animateValue(id, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const value = Math.floor(progress * (end - start) + start);
-            document.getElementById(id).textContent = value + (id === 'stat4' ? '%' : '+');
-            if (progress < 1) window.requestAnimationFrame(step);
-        };
-        window.requestAnimationFrame(step);
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateValue("stat1", 0, 100, 1800);
-                animateValue("stat2", 0, 10, 1800);
-                animateValue("stat3", 0, 20, 1800);
-                animateValue("stat4", 0, 90, 1800);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    observer.observe(document.querySelector('#stat1').parentElement.parentElement);
 </script>
 
 {% endblock %}
